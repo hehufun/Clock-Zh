@@ -50,7 +50,7 @@
   position: absolute;
   left: calc(50% - var(--clock-dh));
   bottom: 1em;
-  opacity: 0.1;
+  opacity: 0.01;
 }
 
 .clock:hover {
