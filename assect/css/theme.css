@@ -1,0 +1,112 @@
+/* 引用字体 */
+/* 可口可乐字体 */
+@font-face {
+  font-family: 'Coca';
+  src: local(''),
+    url('../fonts/Coca.woff2') format('woff2');
+  font-weight: bolder;
+}
+
+:root {
+  --themebg: #ededed;
+  --big-fontcolor: #242424;
+}
+
+
+body {
+  background-color: var(--themebg);
+  color: var(--themebg);
+  transition: color 800ms, background-color 800ms;
+}
+
+/* 切换按钮 */
+#switchbtn {
+  transition: color 500ms, background-color 500ms;
+  background: #99cc9900;
+  font-size: 3em;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  opacity: 0.1;
+  user-select: none;
+}
+
+#switchbtn:hover {
+  opacity: 0.7;
+}
+
+#switchbtn:active {
+  opacity: 1;
+}
+
+/* 时辰 */
+#shichen {
+  user-select: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  margin-top: 10px;
+  min-width: 5em;
+  top: 36%;
+  left: 50%;
+  text-align: center;
+  color: var(--big-fontcolor);
+  font-family: Coca;
+  font-size: 4em;
+  z-index: 16;
+}
+
+#shichen:hover #Ttime {
+  display: none;
+}
+
+/* 其他文字 */
+#Totime {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  bottom: 30%;
+  left: 50%;
+  margin-top: 20px;
+  text-align: center;
+  color: var(--big-fontcolor);
+  font-family: Coca;
+  font-size: 2em;
+  z-index: 6;
+  opacity: 0.6;
+}
+
+#Totime:hover {
+  opacity: 1;
+}
+
+/* 自动识别暗色模式  */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --themebg: #242424;
+    --big-fontcolor: #ededed;
+  }
+}
+
+/* 平面宽度小于600px时，报时不显示 */
+@media only screen and (max-width: 600px) {
+  #Totime {
+    display: none;
+  }
+}
+
+@media only screen and (max-height: 500px) {
+  #Totime {
+    display: none;
+  }
+}
+
+@media only screen and (max-height: 300px) {
+  #shichen {
+    font-size: 2em;
+  }
+
+  #Totime {
+    display: none;
+  }
+}

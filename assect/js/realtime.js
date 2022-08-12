@@ -2,7 +2,7 @@
 
 // 循环检查元素并每一秒运行一次
 function ctkTime() {
-  window.setTimeout("ctkTime()", 1000);
+  window.setTimeout("ctkTime()", 500);
   if (!document.getElementById('Totime')) {
     return;
   } else {
@@ -61,7 +61,8 @@ function Totimes() {
   var TooMinute = Too.getMinutes();
   var TooSecond = Too.getSeconds();
   // 标题栏-数字时间
-  document.title = TooYear + "-" + TooMonth + "-" + TooDate + " 📆 " + TooHour + ":" + TooMinute + ":" + TooSecond;
+  document.title = TooYear + "-" + TooMonth + "-" + TooDate +
+    " 📆 " + TooHour + ":" + TooMinute + ":" + TooSecond;
   // 实时更新的中文时间
   // 转换年份时间为文字格式
   var Yea = TooYear.toString();

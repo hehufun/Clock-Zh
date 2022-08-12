@@ -1,0 +1,137 @@
+/* 引用字体 */
+/* 方正行楷 */
+@font-face {
+  font-family: 'Fzxk';
+  src: local(''),
+    url('../fonts/Fzxk.woff2') format('woff2');
+  font-weight: normal;
+}
+
+:root {
+  --clock-di: 6em;
+  --clock-dh: calc(var(--clock-di) / 2);
+  --clock-bg: #5a5a5a18;
+  --hand-color: #b5b5b5;
+  --minute-hand-color: #00ff00;
+  --second-hand-color: #ff0000;
+}
+
+/* 自动识别暗色模式  */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clock-bg: #b5b5b518;
+    --hand-color: #5a5a5a;
+  }
+}
+
+/* 实时时间 */
+#Ttime {
+  user-select: none;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: calc(var(--clock-di) * 1.1);
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--hand-color);
+  text-align: center;
+  font-family: Fzxk;
+  z-index: 9;
+  display: none;
+  transition: color 800ms, background-color 800ms;
+}
+
+/* 钟盘 */
+.clock {
+  user-select: none;
+  width: var(--clock-di);
+  height: var(--clock-di);
+  border-radius: 50%;
+  position: absolute;
+  left: calc(50% - var(--clock-dh));
+  bottom: 1em;
+  opacity: 0.1;
+}
+
+.clock:hover {
+  opacity: 1;
+}
+
+.clock:active #Ttime {
+  display: block;
+}
+
+/* 钟面 */
+.inner-circle {
+  width: var(--clock-di);
+  height: var(--clock-di);
+  /* border: 4px solid; */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--clock-bg);
+}
+
+/* 表盘中心圆点 */
+.dots {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--hand-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 指针 */
+.hand {
+  width: var(--handW, 3px);
+  height: var(--hand-length, var(--clock-dh));
+  background-color: var(--hand-color);
+  position: absolute;
+  border-radius: 20px;
+  left: calc((50% - (var(--handW) / 2)));
+  z-index: -1;
+  /* 针与表盘边界距离 */
+  top: var(--top);
+  /* 定位居中，算出中心线位置 */
+  transform-origin: center calc(var(--clock-dh) - var(--top));
+}
+
+/* 时钟针 */
+.hour-hand {
+  --hand-length: calc(var(--clock-di) / 4);
+  --top: calc(var(--clock-di) / 5);
+  --handW: 5px;
+  background-color: var(--hand-color);
+}
+
+/* 分钟针 */
+.minute-hand {
+  --hand-length: calc(var(--clock-di) / 3);
+  --top: calc(var(--clock-di) / 9);
+  --handW: 3px;
+  background-color: var(--minute-hand-color);
+}
+
+/* 秒针 */
+.second-hand {
+  --hand-length: calc(var(--clock-di) / 2.6);
+  --top: calc(var(--clock-di) / 20);
+  --handW: 1px;
+  background-color: var(--second-hand-color);
+  position: relative;
+  z-index: 1;
+}
+
+@media only screen and (max-height: 400px) {
+  .clock {
+    display: none;
+  }
+}
